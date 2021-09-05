@@ -4,3 +4,6 @@
 [submodule "externals/inet"]
 	path = externals/inet
 	url = https://github.com/inet-framework/inet.git
+[submodule "externals/spdlog"]
+	path = externals/spdlog
+	url = https://github.com/gabime/spdlog.git
