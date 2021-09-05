@@ -1,0 +1,6 @@
+[submodule "cmake/omnetpp"]
+	path = cmake/omnetpp
+	url = https://github.com/omnetpp/cmake.git
+[submodule "externals/inet"]
+	path = externals/inet
+	url = https://github.com/inet-framework/inet.git
