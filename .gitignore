@@ -1,3 +1,11 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode,cmake
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudiocode,cmake
+
+# Build
+build
+
+### C++ ###
 # Prerequisites
 *.d
 
@@ -10,6 +18,12 @@
 # Precompiled Headers
 *.gch
 *.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
 
 # Compiled Dynamic libraries
 *.so
@@ -30,3 +44,44 @@
 *.exe
 *.out
 *.app
+
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
+
+### CMake Patch ###
+# External projects
+*-prefix/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/cmake-kits.json
+!.vscode/omnetpp-6.0pre10env.cmd
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+### Python ###
+.venv
+
+### OMNeT++ ###
+*.vci 
+*.vec 
+
+# End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode,cmake
