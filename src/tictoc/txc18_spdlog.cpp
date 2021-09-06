@@ -11,7 +11,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <omnetpp.h>
+
+#include <chrono>
 #include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
+
 #include "tictoc/tictoc18_m.h"
 
 // dll export symbol
@@ -45,7 +49,7 @@ using namespace omnetpp;
  * any private member variables to calculate these values. We will use only a single signal that
  * is emitted when a message arrives and carries the hopcount in the message.
  */
-class tictoc_API Txc18 : public cSimpleModule
+class tictoc_API Txc18_spdlog : public cSimpleModule
 {
   private:
     simsignal_t arrivalSignal;
@@ -57,10 +61,23 @@ class tictoc_API Txc18 : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
 };
 
-Define_Module(Txc18);
-
-void Txc18::initialize()
+void initialize_logging()
 {
+    static bool initialized = false;
+    if (!initialized)
+    {
+        initialized = true;
+        auto logger = spdlog::basic_logger_mt("basic_logger", "logs/basic-log.txt");
+        spdlog::set_default_logger(logger);
+        spdlog::flush_every(std::chrono::seconds(3));
+    }
+}
+
+Define_Module(Txc18_spdlog);
+
+void Txc18_spdlog::initialize()
+{
+    initialize_logging();
     spdlog::info("Using spdlog as a logging backend!");
     
     arrivalSignal = registerSignal("arrival");
@@ -72,7 +89,7 @@ void Txc18::initialize()
     }
 }
 
-void Txc18::handleMessage(cMessage *msg)
+void Txc18_spdlog::handleMessage(cMessage *msg)
 {
     TicTocMsg18 *ttmsg = check_and_cast<TicTocMsg18 *>(msg);
 
@@ -83,6 +100,7 @@ void Txc18::handleMessage(cMessage *msg)
         emit(arrivalSignal, hopcount);
 
         EV << "Message " << ttmsg << " arrived after " << hopcount << " hops.\n";
+        spdlog::info("Message {} arrived after {} hops.", ttmsg->str(), hopcount);
         bubble("ARRIVED, starting new one!");
 
         delete ttmsg;
@@ -99,7 +117,7 @@ void Txc18::handleMessage(cMessage *msg)
     }
 }
 
-TicTocMsg18 *Txc18::generateMessage()
+TicTocMsg18 *Txc18_spdlog::generateMessage()
 {
     // Produce source and destination addresses.
     int src = getIndex();
@@ -118,7 +136,7 @@ TicTocMsg18 *Txc18::generateMessage()
     return msg;
 }
 
-void Txc18::forwardMessage(TicTocMsg18 *msg)
+void Txc18_spdlog::forwardMessage(TicTocMsg18 *msg)
 {
     // Increment hop count.
     msg->setHopCount(msg->getHopCount()+1);
@@ -128,6 +146,6 @@ void Txc18::forwardMessage(TicTocMsg18 *msg)
     int k = intuniform(0, n-1);
 
     EV << "Forwarding message " << msg << " on gate[" << k << "]\n";
+    spdlog::info("Forwarding message {} on gate[{}]", msg->str(), k);
     send(msg, "gate$o", k);
 }
-

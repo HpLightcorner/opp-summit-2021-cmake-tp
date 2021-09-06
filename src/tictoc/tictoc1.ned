@@ -21,7 +21,7 @@ simple Txc1
 // Two instances (tic and toc) of Txc1 connected both ways.
 // Tic and toc will pass messages to one another.
 //
-network Tictoc1xx
+network Tictoc1
 {
     submodules:
         tic: Txc1;
