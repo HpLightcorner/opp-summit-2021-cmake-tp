@@ -12,6 +12,17 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -21,7 +32,7 @@ using namespace omnetpp;
  * keep tossing it around in random directions until it arrives at
  * module 2.
  */
-class Txc12 : public cSimpleModule
+class tictoc_API Txc12 : public cSimpleModule
 {
   protected:
     virtual void forwardMessage(cMessage *msg);

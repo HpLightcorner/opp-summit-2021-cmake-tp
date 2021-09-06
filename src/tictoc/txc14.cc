@@ -13,13 +13,24 @@
 #include <omnetpp.h>
 #include "tictoc/tictoc14_m.h"
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
  * In this step we keep track of how many messages we send and received,
  * and display it above the icon.
  */
-class Txc14 : public cSimpleModule
+class tictoc_API Txc14 : public cSimpleModule
 {
   private:
     long numSent;

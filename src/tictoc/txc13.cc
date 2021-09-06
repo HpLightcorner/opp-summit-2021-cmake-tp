@@ -12,6 +12,17 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 // Include a generated file: the header file created from tictoc13.msg.
@@ -33,7 +44,7 @@ using namespace omnetpp;
  * the destination node will generate another message with a random destination
  * address, and so forth.
  */
-class Txc13 : public cSimpleModule
+class tictoc_API Txc13 : public cSimpleModule
 {
   protected:
     virtual TicTocMsg13 *generateMessage();

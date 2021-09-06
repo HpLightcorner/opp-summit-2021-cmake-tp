@@ -11,6 +11,17 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -25,7 +36,7 @@ using namespace omnetpp;
  *
  * We leave out the counter, to keep the source code small.
  */
-class Txc6 : public cSimpleModule
+class tictoc_API Txc6 : public cSimpleModule
 {
   private:
     // Set the pointers to nullptr, so that the destructor won't crash

@@ -11,6 +11,17 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -19,7 +30,7 @@ using namespace omnetpp;
  * in real life it's usually more practical to keep a copy of the original
  * packet so that we can re-send it without the need to build it again.
  */
-class Tic9 : public cSimpleModule
+class tictoc_API Tic9 : public cSimpleModule
 {
   private:
     simtime_t timeout;  // timeout

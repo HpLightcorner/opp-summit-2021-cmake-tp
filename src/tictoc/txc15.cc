@@ -13,6 +13,17 @@
 #include <omnetpp.h>
 #include "tictoc/tictoc15_m.h"
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -24,7 +35,7 @@ using namespace omnetpp;
  * We also collect basic statistics (min, max, mean, std.dev.) and histogram
  * about the hop count which we'll print out at the end of the simulation.
  */
-class Txc15 : public cSimpleModule
+class tictoc_API Txc15 : public cSimpleModule
 {
   private:
     long numSent;

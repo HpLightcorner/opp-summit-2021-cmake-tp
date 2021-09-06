@@ -11,12 +11,23 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
  * Same as Txc4.
  */
-class Txc5 : public cSimpleModule
+class tictoc_API Txc5 : public cSimpleModule
 {
   private:
     int counter;

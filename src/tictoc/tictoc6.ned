@@ -7,7 +7,7 @@
 // `license' for details on this and other legal matters.
 //
 
-package tictoc;
+package omnetppsummit.tictoc;
 
 simple Txc6
 {

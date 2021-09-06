@@ -11,12 +11,23 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
  * In this class we add a counter, and delete the message after ten exchanges.
  */
-class Txc3 : public cSimpleModule
+class tictoc_API Txc3 : public cSimpleModule
 {
   private:
     int counter;  // Note the counter here

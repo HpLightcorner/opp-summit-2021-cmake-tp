@@ -11,6 +11,17 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -18,7 +29,7 @@ using namespace omnetpp;
  * to a random value which can be set from the NED file or from omnetpp.ini.
  * In addition, we'll "lose" (delete) the packet with a small probability.
  */
-class Txc7 : public cSimpleModule
+class tictoc_API Txc7 : public cSimpleModule
 {
   private:
     cMessage *event = nullptr;

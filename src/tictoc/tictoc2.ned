@@ -8,7 +8,7 @@
 // `license' for details on this and other legal matters.
 //
 
-package tictoc;
+package omnetppsummit.tictoc;
 
 //
 // Here we make the model look a bit prettier in the GUI. We assign the

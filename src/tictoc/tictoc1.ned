@@ -8,7 +8,7 @@
 // `license' for details on this and other legal matters.
 //
 
-package tictoc;
+package omnetppsummit.tictoc;
 
 simple Txc1
 {
@@ -21,7 +21,7 @@ simple Txc1
 // Two instances (tic and toc) of Txc1 connected both ways.
 // Tic and toc will pass messages to one another.
 //
-network Tictoc1
+network Tictoc1xx
 {
     submodules:
         tic: Txc1;

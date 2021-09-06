@@ -14,6 +14,17 @@
 #include <spdlog/spdlog.h>
 #include "tictoc/tictoc18_m.h"
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
@@ -34,7 +45,7 @@ using namespace omnetpp;
  * any private member variables to calculate these values. We will use only a single signal that
  * is emitted when a message arrives and carries the hopcount in the message.
  */
-class Txc18 : public cSimpleModule
+class tictoc_API Txc18 : public cSimpleModule
 {
   private:
     simsignal_t arrivalSignal;

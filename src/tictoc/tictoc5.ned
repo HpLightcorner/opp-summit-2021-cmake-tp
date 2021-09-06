@@ -7,7 +7,7 @@
 // `license' for details on this and other legal matters.
 //
 
-package tictoc;
+package omnetppsummit.tictoc;
 
 //
 // Same as Txc4. This module will be the base of the Tic and Toc types.

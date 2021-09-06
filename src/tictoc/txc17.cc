@@ -3,9 +3,20 @@
 #include <omnetpp.h>
 #include "tictoc/tictoc17_m.h"
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
-class Txc17 : public cSimpleModule
+class tictoc_API Txc17 : public cSimpleModule
 {
 private:
     simsignal_t arrivalSignal;

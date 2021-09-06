@@ -11,13 +11,24 @@
 #include <string.h>
 #include <omnetpp.h>
 
+// dll export symbol
+#ifndef  tictoc_API
+#  if defined( tictoc_EXPORT)
+#    define  tictoc_API  OPP_DLLEXPORT
+#  elif defined( tictoc_IMPORT)
+#    define  tictoc_API  OPP_DLLIMPORT
+#  else
+#    define  tictoc_API
+#  endif
+#endif
+
 using namespace omnetpp;
 
 /**
  * In this step you'll learn how to add input parameters to the simulation:
  * we'll turn the "magic number" 10 into a parameter.
  */
-class Txc4 : public cSimpleModule
+class tictoc_API Txc4 : public cSimpleModule
 {
   private:
     int counter;
