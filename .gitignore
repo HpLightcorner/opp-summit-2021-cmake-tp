@@ -68,8 +68,6 @@ CMakeUserPresets.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/extensions.json
-!.vscode/cmake-kits.json
-!.vscode/omnetpp-6.0pre10env.cmd
 *.code-workspace
 
 ### VisualStudioCode Patch ###
@@ -83,5 +81,8 @@ CMakeUserPresets.json
 ### OMNeT++ ###
 *.vci 
 *.vec 
+*.qtenvrc
+run/logs
+run/results
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode,cmake
